@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Shane Cooke BFE, Documentary & Factual Editor",
   description:
-    "London freelance documentary and factual editor. Broadcast, YouTube, podcasts and creator long-form. Story-led editing across interviews, archive, scripts and voiceover. BFE-nominated, My Wife, My Abuser.",
+    "London freelance documentary and factual editor. Broadcast, digital, branded and long-form. Building moving narratives through interviews, archive, scripts and voiceover. BFE-nominated, My Wife, My Abuser.",
   openGraph: {
     title: "Shane Cooke BFE, Documentary & Factual Editor",
     description:
-      "Freelance documentary and factual editor. Broadcast, YouTube, podcasts and long-form factual storytelling.",
+      "Freelance documentary and factual editor across broadcast, digital, branded content and long-form storytelling.",
     url: siteUrl,
     siteName: "Shane Cooke BFE",
     type: "website",

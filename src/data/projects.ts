@@ -41,7 +41,7 @@ export const profile = {
   aboutHeadline: {
     italic: "Documentary & factual",
     caps: "editor",
-    label: "broadcast · youtube · podcast · creator long-form",
+    label: "broadcast · digital · branded · long-form",
   },
   location: "London",
   email: "shanealexcooke94@gmail.com",
@@ -49,9 +49,9 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/shane-cooke-657852212",
   imdb: "https://www.imdb.com/name/nm10567555/",
   portfolio: "https://www.shanecookedits.com/",
-  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, YouTube, podcasts and creator-led long-form.`,
-  extendedBio: `His work is strongest where there is a real story to shape, interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. Not just assembling shots: finding structure, pacing, emotional rhythm and the visual logic of the piece. He edited My Wife, My Abuser, nominated for a British Film Editors award, and continues across documentary, history, science, investigations and digital-first factual.`,
-  approach: `Working with the times, modern editing, colour grading, and 2D and 3D animation across Premiere Pro, DaVinci Resolve, After Effects and Blender. New tools where they help; story, tone and structure always human-led.`,
+  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, digital, branded content and long-form storytelling.`,
+  extendedBio: `His work is strongest where there is a real story to shape: interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. He goes beyond assembling shots, finding the emotion in the material and building a moving narrative through structure, pacing and rhythm. He edited My Wife, My Abuser, nominated for a British Film Editors award, and continues across documentary, history, science, investigations, branded films and digital-first factual.`,
+  approach: `Shane works across Premiere Pro, DaVinci Resolve, After Effects and Blender, with experience in editing, colour grading, motion graphics, sound design, title design, archive-led sequences and 2D/3D visual storytelling. He uses modern tools and AI-assisted workflows where they improve the process, while keeping story, tone and editorial judgement human-led.`,
   skills: [
     "Documentary & factual editing",
     "YouTube long-form",
@@ -68,11 +68,11 @@ export const profile = {
   toolsFull:
     "Adobe Premiere Pro · DaVinci Resolve · After Effects · Blender · Photoshop · Illustrator",
   specialisms:
-    "History · Science · Archive · Investigations · Human stories · YouTube",
-  platforms: "Broadcast · YouTube · Podcast · Creator long-form",
+    "History · Science · Archive · Investigations · Branded · Human stories · Long-form",
+  platforms: "Broadcast · Digital · Branded · Long-form",
   clients: "Netflix · Channel 5 · Channel 4 · ITV · BBC · History Hit",
   availability:
-    "Available for freelance editorial on documentary, factual, YouTube, podcast and creator long-form, broadcast hours, digital series, archive-led features and cutdowns. London-based; on-site or remote.",
+    "Available for freelance editorial on documentary, factual, branded and long-form work: broadcast hours, digital series, archive-led features and cutdowns. London-based; on-site or remote.",
 } as const;
 
 export const projects: Project[] = [
