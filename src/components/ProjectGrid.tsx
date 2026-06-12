@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import {
+  profile,
   projects,
   youtubeChannelSlugs,
   type Project,
@@ -79,8 +80,7 @@ export function ProjectGrid() {
             </h2>
           </div>
           <p className="text-label max-w-sm text-foreground/42">
-            Story-led factual work across broadcast, YouTube, podcast and
-            creator long-form
+            {profile.workIntro}
           </p>
         </div>
 

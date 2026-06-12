@@ -38,10 +38,13 @@ export const profile = {
   tagline: "Documentary & factual editor",
   heroLead:
     "Passionate about crafting films that move people, shaping interviews, archive and raw footage into stories with feeling, pace and purpose.",
+  workIntro:
+    "Story-led factual work across broadcast, YouTube, podcast and creator long-form, digital and film.",
   aboutHeadline: {
     italic: "Documentary & factual",
     caps: "editor",
-    label: "broadcast · digital · branded · long-form",
+    label:
+      "broadcast · YouTube · podcast · creator long-form · digital · film",
   },
   location: "London",
   email: "shanealexcooke94@gmail.com",
@@ -49,7 +52,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/shane-cooke-657852212",
   imdb: "https://www.imdb.com/name/nm10567555/",
   portfolio: "https://www.shanecookedits.com/",
-  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, digital, branded content and long-form storytelling.`,
+  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, YouTube, podcast and creator long-form, digital and film.`,
   extendedBio: `His work is strongest where there is a real story to shape: interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. He goes beyond assembling shots, finding the emotion in the material and building a moving narrative through structure, pacing and rhythm. He edited My Wife, My Abuser, nominated for a British Film Editors award, and continues across documentary, history, science, investigations, branded films and digital-first factual.`,
   approach: `Shane works across Premiere Pro, DaVinci Resolve, After Effects and Blender, with experience in editing, colour grading, motion graphics, sound design, title design, archive-led sequences and 2D/3D visual storytelling. He uses modern tools and AI-assisted workflows where they improve the process, while keeping story, tone and editorial judgement human-led.`,
   skills: [
@@ -69,7 +72,8 @@ export const profile = {
     "Adobe Premiere Pro · DaVinci Resolve · After Effects · Blender · Photoshop · Illustrator",
   specialisms:
     "History · Science · Archive · Investigations · Branded · Human stories · Long-form",
-  platforms: "Broadcast · Digital · Branded · Long-form",
+  platforms:
+    "Broadcast · YouTube · Podcast · Creator long-form · Digital · Film",
   clients: "Netflix · Channel 5 · Channel 4 · ITV · BBC · History Hit",
   availability:
     "Available for freelance editorial on documentary, factual, branded and long-form work: broadcast hours, digital series, archive-led features and cutdowns. London-based; on-site or remote.",

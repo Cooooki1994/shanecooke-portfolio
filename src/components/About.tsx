@@ -18,6 +18,9 @@ export function About() {
                 {profile.aboutHeadline.label}
               </span>
             </h2>
+            <p className="text-label mt-6 max-w-md text-foreground/42">
+              {profile.workIntro}
+            </p>
           </div>
           <div className="space-y-6 text-base leading-relaxed text-foreground/70">
             <p>{profile.bio}</p>

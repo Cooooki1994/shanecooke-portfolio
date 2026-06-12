@@ -6,7 +6,7 @@ export const portraitVideoSlugs = new Set([
 ]);
 
 /** Posters that must show in full (letterbox) — e.g. title on image edges. */
-export const containPosterSlugs = new Set(["infrastructure-wars"]);
+export const containPosterSlugs = new Set<string>([]);
 
 export function getPosterFitClass(slug: string): string {
   if (containPosterSlugs.has(slug)) return "object-contain";
@@ -14,10 +14,7 @@ export function getPosterFitClass(slug: string): string {
 }
 
 /** Position/size overrides for poster cards (absolute layer). */
-export function getPosterLayoutClass(slug: string): string {
-  if (containPosterSlugs.has(slug)) {
-    return "inset-0 h-full w-full object-center";
-  }
+export function getPosterLayoutClass(_slug: string): string {
   return "inset-0 h-full w-full";
 }
 

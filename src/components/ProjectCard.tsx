@@ -10,6 +10,7 @@ import {
   getPosterLayoutClass,
   portraitVideoSlugs,
 } from "@/data/video-fit";
+import { useHoverPreviewCapable } from "@/hooks/useHoverPreviewCapable";
 import { LocalVideoBackground } from "./LocalVideoBackground";
 import { VimeoBackground } from "./VimeoBackground";
 import { YouTubeBackground } from "./YouTubeBackground";
@@ -24,13 +25,14 @@ type ProjectCardProps = {
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
   const [trailerActive, setTrailerActive] = useState(false);
-  const cardRef = useRef<HTMLElement>(null);
+  const hoverCapable = useHoverPreviewCapable();
   const trailerTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const canPlay = Boolean(
     project.videoSrc || project.vimeoId || project.youtubeId,
   );
   const poster = project.bannerSrc ?? project.poster;
   const hasTrailer = canPlay;
+  const showTrailer = hoverCapable && trailerActive;
 
   const clearTrailerTimer = () => {
     if (trailerTimerRef.current) {
@@ -40,6 +42,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   };
 
   const startHover = () => {
+    if (!hoverCapable) return;
+
     setHovered(true);
     if (!canPlay) return;
 
@@ -50,36 +54,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   };
 
   const endHover = () => {
-    if (window.matchMedia("(hover: none)").matches) return;
+    if (!hoverCapable) return;
 
     setHovered(false);
     setTrailerActive(false);
     clearTrailerTimer();
   };
 
-  useEffect(() => {
-    const node = cardRef.current;
-    if (!node || !canPlay) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && window.matchMedia("(hover: none)").matches) {
-          startHover();
-        }
-      },
-      { threshold: 0.55 },
-    );
-
-    observer.observe(node);
-    return () => {
-      observer.disconnect();
-      clearTrailerTimer();
-    };
-  }, [canPlay]);
+  useEffect(() => () => clearTrailerTimer(), []);
 
   const channelLogos = getChannelLogos(project);
-  const posterBlurred = hovered && canPlay && !trailerActive;
-  const posterHidden = trailerActive && canPlay;
+  const posterBlurred = hovered && canPlay && !showTrailer;
+  const posterHidden = showTrailer && canPlay;
   const posterFit = getPosterFitClass(project.slug);
   const posterLayout = getPosterLayoutClass(project.slug);
 
@@ -96,7 +82,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         loading="lazy"
       />
 
-      {project.videoSrc && trailerActive && (
+      {showTrailer && project.videoSrc && (
         <LocalVideoBackground
           src={project.videoSrc}
           active
@@ -106,7 +92,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         />
       )}
 
-      {!project.videoSrc && project.youtubeId && trailerActive && (
+      {showTrailer && !project.videoSrc && project.youtubeId && (
         <YouTubeBackground
           youtubeId={project.youtubeId}
           muted
@@ -114,16 +100,19 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         />
       )}
 
-      {!project.videoSrc && !project.youtubeId && project.vimeoId && trailerActive && (
-        <VimeoBackground
-          vimeoId={project.vimeoId}
-          muted
-          background={false}
-          className="z-0 opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]"
-        />
-      )}
+      {showTrailer &&
+        !project.videoSrc &&
+        !project.youtubeId &&
+        project.vimeoId && (
+          <VimeoBackground
+            vimeoId={project.vimeoId}
+            muted
+            background={false}
+            className="z-0 opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]"
+          />
+        )}
 
-      {channelLogos.length > 0 && !trailerActive && (
+      {channelLogos.length > 0 && !showTrailer && (
         <div className="absolute top-4 left-4 z-20 flex items-center gap-3 md:top-5 md:left-5">
           {channelLogos.map((logo) => (
             <img
@@ -136,7 +125,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       )}
 
-      {project.wip && !trailerActive && (
+      {project.wip && !showTrailer && (
         <div className="absolute top-4 right-4 z-20 md:top-5 md:right-5">
           <span className="text-label rounded-full bg-background/85 px-2.5 py-1 text-[0.62rem] tracking-[0.18em] text-accent ring-1 ring-accent/35 backdrop-blur-sm">
             WIP
@@ -146,13 +135,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
       <div
         className={`absolute inset-0 z-10 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity duration-300 ${
-          hovered && !trailerActive ? "opacity-100" : "opacity-0"
+          hovered && !showTrailer ? "opacity-100" : "opacity-0"
         }`}
       />
 
       <div
         className={`absolute right-0 bottom-0 left-0 z-20 p-4 transition-all duration-300 sm:p-5 lg:p-5 ${
-          hovered && !trailerActive
+          hovered && !showTrailer
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0"
         }`}
@@ -174,7 +163,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </p>
           </div>
           <span className="text-label shrink-0 text-accent">
-            {hasTrailer ? "Preview" : project.wip ? "Coming soon" : "View"}
+            {hasTrailer && hoverCapable ? "Preview" : project.wip ? "Coming soon" : "View"}
           </span>
         </div>
       </div>
@@ -196,13 +185,21 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     transition: { duration: 0.6, delay: index * 0.03, ease: [0.16, 1, 0.3, 1] as const },
     className:
       "group surface-shine relative aspect-video cursor-pointer overflow-hidden rounded-2xl bg-surface transition-shadow duration-300 hover:shadow-[0_0_28px_rgba(201,162,78,0.14)]",
-    onMouseEnter: startHover,
-    onMouseLeave: endHover,
+    ...(hoverCapable
+      ? {
+          onPointerEnter: (e: React.PointerEvent) => {
+            if (e.pointerType === "mouse") startHover();
+          },
+          onPointerLeave: (e: React.PointerEvent) => {
+            if (e.pointerType === "mouse") endHover();
+          },
+        }
+      : {}),
   };
 
   return (
     <Link href={`/work/${project.slug}`} className="block">
-      <motion.article ref={cardRef} {...motionProps}>
+      <motion.article {...motionProps}>
         {content}
       </motion.article>
     </Link>
