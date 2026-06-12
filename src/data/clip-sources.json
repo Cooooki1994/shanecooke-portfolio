@@ -1,0 +1,66 @@
+{
+  "policy": "Public released promos from official @historyhit Instagram and History Hit SVOD trailers",
+  "history_hit_originals": [
+    {
+      "slug": "icelandic-vikings-arrival",
+      "title": "Icelandic Vikings: Arrival",
+      "clip": "/videos/hh-originals/icelandic-vikings-arrival.mp4",
+      "instagram": "https://www.instagram.com/reel/DSkllh9Eyd3/",
+      "youtube": "Ex4TYHbTP1g",
+      "svod": "https://access.historyhit.com/videos/icelandic-vikings-arrival",
+      "thumbnail": "/images/history-hit/icelandic-vikings-arrival.jpg"
+    },
+    {
+      "slug": "icelandic-vikings-survival",
+      "title": "Icelandic Vikings: Survival",
+      "clip": "/videos/hh-originals/icelandic-vikings-survival.mp4",
+      "instagram": "https://www.instagram.com/reel/DTvUwClj9tK/",
+      "youtube": "bS4QRBBTgWQ",
+      "svod": "https://access.historyhit.com/icelandic-vikings/season:1/videos/icelandic-vikings-survival",
+      "thumbnail": "/images/history-hit/icelandic-vikings-survival.jpg"
+    },
+    {
+      "slug": "churchills-secret-war",
+      "title": "Churchill's Secret War",
+      "clip": "/videos/hh-originals/churchills-secret-war.mp4",
+      "instagram": "https://www.instagram.com/reel/DW_uRr3FnnQ/",
+      "youtube": "I-mb3pu2BUY",
+      "youtube_title": "Churchill's Secret Army",
+      "svod": "https://access.historyhit.com/videos/churchills-secret-army",
+      "thumbnail": "/images/history-hit/churchills-secret-war.jpg"
+    },
+    {
+      "slug": "rise-of-caesar",
+      "title": "Rise of Caesar",
+      "clip": "/videos/hh-originals/rise-of-augustus.mp4",
+      "instagram": "https://www.instagram.com/reel/DVyy6NSEftU/",
+      "youtube": "mD_YVIglLUM",
+      "svod": "https://access.historyhit.com/videos/rise-of-caesar",
+      "svod_trailer": "https://access.historyhit.com/videos/ris26-trailer",
+      "note": "Same hover clip as Rise of Augustus (ris26-trailer)",
+      "thumbnail": "/images/history-hit/rise-of-caesar.jpg"
+    },
+    {
+      "slug": "rise-of-augustus",
+      "title": "Rise of Augustus",
+      "clip": "/videos/hh-originals/rise-of-augustus.mp4",
+      "instagram": null,
+      "youtube": null,
+      "svod": "https://access.historyhit.com/videos/rise-of-augustus",
+      "svod_trailer": "https://access.historyhit.com/videos/ris26-trailer",
+      "thumbnail": "/images/history-hit/rise-of-augustus.jpg"
+    }
+  ],
+  "other_trailers": [
+    {
+      "slug": "human-tide",
+      "youtube": "zV4xTVH90-8",
+      "url": "https://www.youtube.com/watch?v=zV4xTVH90-8"
+    },
+    {
+      "slug": "babes-in-the-woods",
+      "youtube": "gKPLOZdgPfE",
+      "url": "https://www.youtube.com/watch?v=gKPLOZdgPfE"
+    }
+  ]
+}

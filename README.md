@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shane Cooke BFE — Portfolio Site
 
-## Getting Started
+Professional documentary editor portfolio with autoplay video previews, built to replace or sit alongside [shanecookeedits.squarespace.com](https://shanecookeedits.squarespace.com/).
 
-First, run the development server:
+## Features
+
+- **Hero autoplay** — cycles through Vimeo background clips (muted, looped)
+- **Hover-to-play** project cards — Vimeo previews on hover where available
+- **Award highlights** — BFE Cut Above & Broadcast Awards from CV
+- **Full credits table** — television & streaming from CV 2026
+- **Cinematic dark theme** — documentary-editor aesthetic (Cormorant + DM Sans)
+
+## Quick start
 
 ```bash
+cd portfolio-site
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Trailers (public only)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Hover autoplay uses **released** trailers linked on [shanecookeedits.squarespace.com](https://shanecookeedits.squarespace.com/) — Vimeo (`vimeoId`) or YouTube (`youtubeId`). No unreleased work-in-progress exports.
 
-## Learn More
+Add a trailer in `src/data/projects.ts`:
 
-To learn more about Next.js, take a look at the following resources:
+```ts
+youtubeId: "3a9YIyQQBPY",  // or vimeoId: "678141708"
+externalUrl: "https://www.youtube.com/watch?v=3a9YIyQQBPY",
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy (replace Squarespace)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Vercel (recommended)
 
-## Deploy on Vercel
+1. Push `portfolio-site` to GitHub
+2. Import at [vercel.com](https://vercel.com)
+3. Point `shanecookeedits.com` DNS to Vercel (or use a subdomain first)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Keep Squarespace domain
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+In Squarespace → Settings → Domains → connect external site, or use Vercel custom domain with DNS CNAME.
+
+## Remotion hero reel
+
+A Ken Burns showreel composition lives in `../remotion/src/compositions/PortfolioHeroReel.tsx`.
+
+Render a hero background video:
+
+```bash
+cd ../remotion
+npx remotion render PortfolioHeroReel out/portfolio-hero.mp4
+```
+
+Copy to `portfolio-site/public/videos/hero.mp4` and wire into the Hero component if you prefer a self-hosted reel over Vimeo.
+
+## Content updates
+
+Edit `src/data/projects.ts` for projects, awards, credits, and contact info.
