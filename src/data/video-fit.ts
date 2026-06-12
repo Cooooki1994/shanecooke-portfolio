@@ -5,12 +5,19 @@ export const portraitVideoSlugs = new Set([
   "churchills-secret-war",
 ]);
 
-export function getPosterFitClass(_slug: string): string {
+/** Posters that must show in full (letterbox) — e.g. title on image edges. */
+export const containPosterSlugs = new Set(["human-tide"]);
+
+export function getPosterFitClass(slug: string): string {
+  if (containPosterSlugs.has(slug)) return "object-contain";
   return "object-cover";
 }
 
 /** Position/size overrides for poster cards (absolute layer). */
-export function getPosterLayoutClass(_slug: string): string {
+export function getPosterLayoutClass(slug: string): string {
+  if (containPosterSlugs.has(slug)) {
+    return "inset-0 h-full w-full object-center";
+  }
   return "inset-0 h-full w-full";
 }
 

@@ -13,7 +13,40 @@ type LocalVideoBackgroundProps = {
   fit?: "auto" | FitMode;
 };
 
-function useVideoSync(active: boolean, src: string, count: number) {
+function bindReliablePlayback(video: HTMLVideoElement, active: boolean, muted: boolean) {
+  const attemptPlay = () => {
+    if (!active) return;
+    video.muted = muted;
+    void video.play().catch(() => {});
+  };
+
+  if (!active) {
+    video.pause();
+    return () => {};
+  }
+
+  attemptPlay();
+
+  const events = ["loadeddata", "canplay", "canplaythrough"] as const;
+  events.forEach((e) => video.addEventListener(e, attemptPlay));
+
+  const onVisible = () => {
+    if (document.visibilityState === "visible") attemptPlay();
+  };
+  document.addEventListener("visibilitychange", onVisible);
+
+  return () => {
+    events.forEach((e) => video.removeEventListener(e, attemptPlay));
+    document.removeEventListener("visibilitychange", onVisible);
+  };
+}
+
+function useVideoSync(
+  active: boolean,
+  src: string,
+  count: number,
+  muted: boolean,
+) {
   const refs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const setRef = useCallback(
@@ -31,11 +64,11 @@ function useVideoSync(active: boolean, src: string, count: number) {
       videos.forEach((v) => {
         v.currentTime = 0;
       });
-      void Promise.all(videos.map((v) => v.play().catch(() => {})));
-    } else {
-      videos.forEach((v) => v.pause());
     }
-  }, [active, src, count]);
+
+    const cleanups = videos.map((v) => bindReliablePlayback(v, active, muted));
+    return () => cleanups.forEach((fn) => fn());
+  }, [active, src, count, muted]);
 
   return setRef;
 }
@@ -47,7 +80,7 @@ function PortraitFrame({
   className,
   opacity,
 }: Omit<LocalVideoBackgroundProps, "fit">) {
-  const setRef = useVideoSync(active ?? true, src, 4);
+  const setRef = useVideoSync(active ?? true, src, 4, muted ?? true);
 
   return (
     <div
@@ -121,12 +154,8 @@ export function LocalVideoBackground({
   useEffect(() => {
     const video = ref.current;
     if (!video || resolvedFit !== "cover") return;
-    if (active) {
-      void video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [active, src, resolvedFit]);
+    return bindReliablePlayback(video, active, muted);
+  }, [active, src, resolvedFit, muted]);
 
   if (resolvedFit === null) {
     return (
@@ -182,6 +211,8 @@ export function LocalVideoCarousel({
   intervalMs = 10000,
 }: LocalVideoCarouselProps) {
   const [index, setIndex] = useState(0);
+  const [inView, setInView] = useState(true);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sources.length <= 1) return;
@@ -191,17 +222,31 @@ export function LocalVideoCarousel({
     return () => clearInterval(timer);
   }, [sources.length, intervalMs]);
 
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="absolute inset-0">
+    <div ref={rootRef} className="absolute inset-0">
       {sources.map((src, i) => (
         <LocalVideoBackground
           key={src}
           src={src}
-          active={i === index}
+          active={inView && i === index}
           fit="cover"
           muted
           opacity={i === index ? 1 : 0}
-          className="transition-opacity duration-[2000ms] ease-in-out"
+          className={`transition-opacity duration-[2000ms] ease-in-out ${
+            i === index ? "z-[1]" : "z-0"
+          }`}
         />
       ))}
     </div>

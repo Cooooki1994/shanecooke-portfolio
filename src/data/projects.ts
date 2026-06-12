@@ -48,7 +48,7 @@ export const profile = {
   phone: "07894 412594",
   linkedin: "https://www.linkedin.com/in/shane-cooke-657852212",
   imdb: "https://www.imdb.com/name/nm10567555/",
-  portfolio: "https://shanecookeedits.squarespace.com/",
+  portfolio: "https://www.shanecookedits.com/",
   bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, YouTube, podcasts and creator-led long-form.`,
   extendedBio: `His work is strongest where there is a real story to shape, interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. Not just assembling shots: finding structure, pacing, emotional rhythm and the visual logic of the piece. He edited My Wife, My Abuser, nominated for a British Film Editors award, and continues across documentary, history, science, investigations and digital-first factual.`,
   approach: `Working with the times, modern editing, colour grading, and 2D and 3D animation across Premiere Pro, DaVinci Resolve, After Effects and Blender. New tools where they help; story, tone and structure always human-led.`,

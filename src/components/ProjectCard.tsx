@@ -100,7 +100,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <LocalVideoBackground
           src={project.videoSrc}
           active
-          muted={false}
+          muted
           fit={portraitVideoSlugs.has(project.slug) ? "portrait" : "auto"}
           className="z-0 opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]"
         />
@@ -109,7 +109,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       {!project.videoSrc && project.youtubeId && trailerActive && (
         <YouTubeBackground
           youtubeId={project.youtubeId}
-          muted={false}
+          muted
           className="z-0 opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]"
         />
       )}
@@ -117,7 +117,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       {!project.videoSrc && !project.youtubeId && project.vimeoId && trailerActive && (
         <VimeoBackground
           vimeoId={project.vimeoId}
-          muted={false}
+          muted
           background={false}
           className="z-0 opacity-0 animate-[fadeIn_0.7s_ease-out_forwards]"
         />
