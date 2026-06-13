@@ -37,7 +37,7 @@ export const profile = {
   credential: "BFE",
   tagline: "Documentary & factual editor",
   heroLead:
-    "Documentary and factual editor shaping interviews, archive and raw footage into stories with atmosphere, clarity and pace.",
+    "Documentary and factual editor shaping stories with atmosphere, clarity and pace.",
   workIntro:
     "Story-led factual work across broadcast, YouTube, podcast and creator long-form, digital and film.",
   aboutHeadline: {
