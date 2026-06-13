@@ -43,9 +43,9 @@ export function About() {
                 </p>
               </div>
               <div>
-                <p className="text-meta">Clients</p>
+                <p className="text-meta">Broadcasters</p>
                 <p className="mt-2 text-sm text-foreground">
-                  {profile.clients}
+                  {profile.broadcasters}
                 </p>
               </div>
               <div className="col-span-2">

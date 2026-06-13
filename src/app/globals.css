@@ -139,15 +139,16 @@ body::before {
 }
 
 .postnom-hero {
-  font-size: 0.34em;
-  margin-left: 0.22em;
-  vertical-align: baseline;
+  font-size: 0.26em;
+  margin-left: 0.06em;
+  vertical-align: 0.12em;
+  letter-spacing: 0.18em;
 }
 
 .postnom-nav {
-  font-size: 0.72em;
-  margin-left: 0.18em;
-  letter-spacing: 0.14em;
+  font-size: 0.62em;
+  margin-left: 0.1em;
+  letter-spacing: 0.16em;
 }
 
 .postnom {

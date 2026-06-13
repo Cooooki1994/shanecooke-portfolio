@@ -37,7 +37,7 @@ export const profile = {
   credential: "BFE",
   tagline: "Documentary & factual editor",
   heroLead:
-    "Passionate about crafting films that move people, shaping interviews, archive and raw footage into stories with feeling, pace and purpose.",
+    "Documentary and factual editor shaping interviews, archive and raw footage into stories with atmosphere, clarity and pace.",
   workIntro:
     "Story-led factual work across broadcast, YouTube, podcast and creator long-form, digital and film.",
   aboutHeadline: {
@@ -74,7 +74,7 @@ export const profile = {
     "History · Science · Archive · Investigations · Branded · Human stories · Long-form",
   platforms:
     "Broadcast · YouTube · Podcast · Creator long-form · Digital · Film",
-  clients: "Netflix · Channel 5 · Channel 4 · ITV · BBC · History Hit",
+  broadcasters: "Netflix · Channel 5 · Channel 4 · ITV · BBC · History Hit",
   availability:
     "Available for freelance editorial on documentary, factual, branded and long-form work: broadcast hours, digital series, archive-led features and cutdowns. London-based; on-site or remote.",
 } as const;

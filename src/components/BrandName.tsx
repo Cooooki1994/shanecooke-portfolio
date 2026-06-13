@@ -13,13 +13,17 @@ export function BrandName({ size = "inline", className = "" }: BrandNameProps) {
         ? "font-display-italic text-glow-title text-base leading-none md:text-lg"
         : "font-display-italic text-glow-title text-base leading-none";
 
+  const showCredential = size !== "nav";
+
   const postnomClass =
     size === "hero" ? "postnom-hero" : size === "nav" ? "postnom-nav" : "postnom";
 
   return (
     <span className={`${nameClass} ${className}`.trim()}>
       {profile.name}
-      <span className={postnomClass}> {profile.credential}</span>
+      {showCredential && (
+        <span className={postnomClass}>, {profile.credential}</span>
+      )}
     </span>
   );
 }
