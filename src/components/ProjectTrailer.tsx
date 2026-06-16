@@ -35,14 +35,19 @@ export function ProjectTrailer({ project }: ProjectTrailerProps) {
 
   return (
     <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface ring-1 ring-accent/12">
-      {project.videoSrc && (
-        <LocalVideoBackground src={project.videoSrc} active muted fit={fit} />
+      {project.youtubeId && (
+        <YouTubeBackground youtubeId={project.youtubeId} interactive />
       )}
-      {!project.videoSrc && project.youtubeId && (
-        <YouTubeBackground youtubeId={project.youtubeId} muted />
+      {!project.youtubeId && project.vimeoId && (
+        <VimeoBackground vimeoId={project.vimeoId} interactive />
       )}
-      {!project.videoSrc && !project.youtubeId && project.vimeoId && (
-        <VimeoBackground vimeoId={project.vimeoId} muted background={false} />
+      {!project.youtubeId && !project.vimeoId && project.videoSrc && (
+        <LocalVideoBackground
+          src={project.videoSrc}
+          active
+          interactive
+          fit={fit}
+        />
       )}
     </div>
   );

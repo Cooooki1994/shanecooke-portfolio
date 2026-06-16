@@ -11,12 +11,25 @@ type LocalVideoBackgroundProps = {
   active?: boolean;
   muted?: boolean;
   fit?: "auto" | FitMode;
+  /** Full trailer player with native controls and audio (detail pages). */
+  interactive?: boolean;
 };
 
+function primeVideoForInlineAutoplay(video: HTMLVideoElement, muted: boolean) {
+  video.muted = muted;
+  video.defaultMuted = muted;
+  video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "true");
+  video.disablePictureInPicture = true;
+}
+
 function bindReliablePlayback(video: HTMLVideoElement, active: boolean, muted: boolean) {
+  primeVideoForInlineAutoplay(video, muted);
+
   const attemptPlay = () => {
     if (!active) return;
-    video.muted = muted;
+    primeVideoForInlineAutoplay(video, muted);
     void video.play().catch(() => {});
   };
 
@@ -27,7 +40,7 @@ function bindReliablePlayback(video: HTMLVideoElement, active: boolean, muted: b
 
   attemptPlay();
 
-  const events = ["loadeddata", "canplay", "canplaythrough"] as const;
+  const events = ["loadeddata", "canplay", "canplaythrough", "loadedmetadata"] as const;
   events.forEach((e) => video.addEventListener(e, attemptPlay));
 
   const onVisible = () => {
@@ -35,9 +48,17 @@ function bindReliablePlayback(video: HTMLVideoElement, active: boolean, muted: b
   };
   document.addEventListener("visibilitychange", onVisible);
 
+  const onFirstTouch = () => attemptPlay();
+  document.addEventListener("touchstart", onFirstTouch, {
+    capture: true,
+    passive: true,
+    once: true,
+  });
+
   return () => {
     events.forEach((e) => video.removeEventListener(e, attemptPlay));
     document.removeEventListener("visibilitychange", onVisible);
+    document.removeEventListener("touchstart", onFirstTouch, { capture: true });
   };
 }
 
@@ -141,6 +162,7 @@ export function LocalVideoBackground({
   active = true,
   muted = true,
   fit = "auto",
+  interactive = false,
 }: LocalVideoBackgroundProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const [resolvedFit, setResolvedFit] = useState<FitMode | null>(
@@ -153,9 +175,22 @@ export function LocalVideoBackground({
 
   useEffect(() => {
     const video = ref.current;
-    if (!video || resolvedFit !== "cover") return;
+    if (!video || resolvedFit !== "cover" || interactive) return;
     return bindReliablePlayback(video, active, muted);
-  }, [active, src, resolvedFit, muted]);
+  }, [active, src, resolvedFit, muted, interactive]);
+
+  if (interactive) {
+    return (
+      <video
+        src={src}
+        controls
+        playsInline
+        preload="metadata"
+        className={`absolute inset-0 h-full w-full bg-background object-contain ${className}`}
+        style={{ opacity }}
+      />
+    );
+  }
 
   if (resolvedFit === null) {
     return (
@@ -197,6 +232,8 @@ export function LocalVideoBackground({
       controlsList="nodownload noplaybackrate noremoteplayback"
       className={`pointer-events-none absolute inset-0 h-full w-full object-cover ${className}`}
       style={{ opacity }}
+      // iOS inline muted autoplay
+      {...{ "webkit-playsinline": "true" }}
     />
   );
 }
@@ -206,6 +243,10 @@ type LocalVideoCarouselProps = {
   intervalMs?: number;
 };
 
+/**
+ * Hero background reel — single <video> element (iOS chokes on many simultaneous
+ * decoders). Card hover previews stay disabled on touch via ProjectCard.
+ */
 export function LocalVideoCarousel({
   sources,
   intervalMs = 10000,
@@ -213,6 +254,7 @@ export function LocalVideoCarousel({
   const [index, setIndex] = useState(0);
   const [inView, setInView] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (sources.length <= 1) return;
@@ -228,27 +270,48 @@ export function LocalVideoCarousel({
 
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.2 },
+      { threshold: 0, rootMargin: "0px 0px 0px 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
+  const src = sources[index] ?? sources[0];
+  const shouldPlay = inView && Boolean(src);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !src) return;
+
+    const resolved = video.getAttribute("src");
+    if (resolved !== src) {
+      video.src = src;
+      video.load();
+    }
+
+    if (!shouldPlay) {
+      video.pause();
+      return;
+    }
+
+    return bindReliablePlayback(video, true, true);
+  }, [src, shouldPlay]);
+
+  if (!src) return null;
+
   return (
     <div ref={rootRef} className="absolute inset-0">
-      {sources.map((src, i) => (
-        <LocalVideoBackground
-          key={src}
-          src={src}
-          active={inView && i === index}
-          fit="cover"
-          muted
-          opacity={i === index ? 1 : 0}
-          className={`transition-opacity duration-[2000ms] ease-in-out ${
-            i === index ? "z-[1]" : "z-0"
-          }`}
-        />
-      ))}
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        {...{ "webkit-playsinline": "true" }}
+      />
     </div>
   );
 }

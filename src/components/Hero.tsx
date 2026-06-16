@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { BrandName } from "@/components/BrandName";
 import { heroLocalVideos, heroMedia, profile } from "@/data/projects";
+import { siteBrand } from "@/lib/site";
 import { HeroMediaCarousel } from "./HeroMediaCarousel";
 import { LocalVideoCarousel } from "./LocalVideoBackground";
 
@@ -42,7 +43,11 @@ export function Hero() {
         >
           <h1 className="text-foreground">
             <BrandName size="hero" />
+            <span className="sr-only"> — {siteBrand}</span>
           </h1>
+          <p className="text-label mt-4 tracking-[0.12em] text-foreground/38 uppercase">
+            {siteBrand}
+          </p>
           <p className="font-serif mt-8 max-w-2xl text-xl leading-relaxed text-foreground/82 md:text-2xl">
             {profile.heroLead}
           </p>

@@ -36,7 +36,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     imdbUrl: "https://www.imdb.com/title/tt21065126/",
     watch: [
       { label: "Channel 4", url: "https://www.channel4.com/" },
-      { label: "Trailer", url: "https://www.youtube.com/watch?v=IfxHSX2Az18" },
+      { label: "Trailer", url: "https://www.youtube.com/watch?v=vsd3HgsCs1M" },
     ],
     credits: [
       { label: "Broadcaster", value: "Channel 4" },
@@ -73,23 +73,6 @@ export const projectDetails: Record<string, ProjectDetail> = {
     ],
     credits: [{ label: "Broadcaster", value: "ITV" }],
   },
-  "the-legend-of-arthur": {
-    synopsis:
-      "A History Hit Original TV documentary tracing the origins of the Arthurian legend, from medieval manuscripts and Plantagenet politics to the stories that shaped a king.",
-    editorial:
-      "Lead editor on Episode 1, currently in post. Manuscript animation, presenter-led history, and archive storytelling for History Hit SVOD.",
-    watch: [
-      {
-        label: "Coming soon, History Hit",
-        url: "https://access.historyhit.com",
-      },
-    ],
-    credits: [
-      { label: "Platform", value: "History Hit SVOD" },
-      { label: "Format", value: "TV Documentary · Episode 1" },
-      { label: "Status", value: "Work in progress" },
-    ],
-  },
   "icelandic-vikings-arrival": {
     synopsis:
       "Dan Snow explores how Norse settlers reached Iceland, turf homes, saga landscapes, and the story of arrival on the edge of the known world.",
@@ -118,9 +101,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
   "churchills-secret-war": {
     synopsis:
-      "Churchill's covert resistance networks during the Second World War, the secret armies and unconventional operations that operated far from the headlines.",
+      "Churchill's Secret War — covert resistance networks during the Second World War, the secret armies and unconventional operations that operated far from the headlines.",
     editorial:
-      "Lead editor on an archive-heavy WWII feature for History Hit. Strategic through-line across extensive period material, expert testimony, and reconstruction.",
+      "Lead editor on Churchill's Secret War for History Hit. Strategic through-line across extensive period material, expert testimony, and reconstruction.",
     watch: [
       {
         label: "History Hit",
@@ -157,7 +140,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     watch: [
       { label: "Trailer", url: "https://www.youtube.com/watch?v=zV4xTVH90-8" },
     ],
-    credits: [{ label: "Format", value: "Feature documentary" }],
+    credits: [{ label: "Format", value: "Indie feature" }],
   },
   dandelion: {
     synopsis:
@@ -171,7 +154,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       },
     ],
     credits: [
-      { label: "Format", value: "Short film" },
+      { label: "Format", value: "Indie short" },
       { label: "Director", value: "Benjamin Colbourne" },
       { label: "Colourist", value: "Peter Maughan" },
     ],

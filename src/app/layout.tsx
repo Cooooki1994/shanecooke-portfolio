@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { CursorSpotlight } from "@/components/CursorSpotlight";
+import {
+  siteBrand,
+  siteDescription,
+  siteKeywords,
+  siteTitle,
+  siteUrl,
+} from "@/lib/site";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -18,22 +25,45 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://shanecookeedits.vercel.app";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Shane Cooke BFE, Documentary & Factual Editor",
-  description:
-    "London freelance documentary and factual editor. Story-led work across broadcast, YouTube, podcast and creator long-form, digital and film. BFE-nominated, My Wife, My Abuser.",
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteBrand}`,
+  },
+  description: siteDescription,
+  keywords: [...siteKeywords],
+  applicationName: siteBrand,
+  authors: [{ name: "Shane Cooke", url: siteUrl }],
+  creator: "Shane Cooke",
+  publisher: siteBrand,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
-    title: "Shane Cooke BFE, Documentary & Factual Editor",
-    description:
-      "Freelance documentary and factual editor across broadcast, YouTube, podcast and creator long-form, digital and film.",
+    title: siteTitle,
+    description: siteDescription,
     url: siteUrl,
-    siteName: "Shane Cooke BFE",
+    siteName: siteBrand,
+    locale: "en_GB",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
+  category: "portfolio",
 };
 
 export default function RootLayout({

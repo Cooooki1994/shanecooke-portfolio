@@ -7,6 +7,8 @@ type YouTubeBackgroundProps = {
   className?: string;
   opacity?: number;
   muted?: boolean;
+  /** Full trailer player with controls and audio (detail pages). */
+  interactive?: boolean;
   /** Crop + mask embed chrome (title bar, controls) — for hero backgrounds */
   chromeless?: boolean;
 };
@@ -16,27 +18,31 @@ export function YouTubeBackground({
   className = "",
   opacity = 1,
   muted = true,
+  interactive = false,
   chromeless = false,
 }: YouTubeBackgroundProps) {
   const [src, setSrc] = useState<string | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams({
-      autoplay: "1",
-      mute: muted ? "1" : "0",
-      loop: "1",
-      controls: "0",
+      autoplay: interactive ? "0" : "1",
+      mute: interactive ? "0" : muted ? "1" : "0",
+      loop: interactive ? "0" : "1",
+      controls: interactive ? "1" : "0",
       playsinline: "1",
       rel: "0",
       modestbranding: "1",
       iv_load_policy: "3",
       cc_load_policy: "0",
-      disablekb: "1",
-      fs: "0",
-      autohide: "1",
+      disablekb: interactive ? "0" : "1",
+      fs: interactive ? "1" : "0",
+      autohide: interactive ? "0" : "1",
       showinfo: "0",
-      playlist: youtubeId,
     });
+
+    if (!interactive) {
+      params.set("playlist", youtubeId);
+    }
 
     if (chromeless) {
       params.set("origin", window.location.origin);
@@ -44,7 +50,7 @@ export function YouTubeBackground({
     }
 
     setSrc(`https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`);
-  }, [youtubeId, muted, chromeless]);
+  }, [youtubeId, muted, chromeless, interactive]);
 
   const frameClass = chromeless
     ? "absolute left-1/2 top-[52%] h-[170%] w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 border-0"
@@ -52,7 +58,7 @@ export function YouTubeBackground({
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden bg-background ${className}`}
+      className={`${interactive ? "relative" : "pointer-events-none"} absolute inset-0 overflow-hidden bg-background ${className}`}
       style={{ opacity }}
     >
       {src && (

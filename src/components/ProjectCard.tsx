@@ -125,6 +125,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
       )}
 
+      {channelLogos.length === 0 && project.cardBadge && !showTrailer && (
+        <div className="absolute top-4 left-4 z-20 md:top-5 md:left-5">
+          <span className="text-label rounded-full bg-background/85 px-2.5 py-1 text-[0.62rem] tracking-[0.14em] text-foreground/72 ring-1 ring-accent/25 backdrop-blur-sm">
+            {project.cardBadge}
+          </span>
+        </div>
+      )}
+
       {project.wip && !showTrailer && (
         <div className="absolute top-4 right-4 z-20 md:top-5 md:right-5">
           <span className="text-label rounded-full bg-background/85 px-2.5 py-1 text-[0.62rem] tracking-[0.18em] text-accent ring-1 ring-accent/35 backdrop-blur-sm">

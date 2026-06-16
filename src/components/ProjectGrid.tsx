@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import {
-  profile,
   projects,
   youtubeChannelSlugs,
   type Project,
@@ -67,21 +66,19 @@ export function ProjectGrid() {
   return (
     <section id="work" className="relative bg-background py-10 md:py-14">
       <div className="mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8 xl:px-10">
-        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mb-6">
           <div>
             <p className="text-eyebrow mb-4">Selected work</p>
             <h2 className="max-w-xl text-foreground">
-              <span className="font-display-caps text-glow-gold block text-3xl md:text-4xl">
-                Broadcast
+              <span className="font-display-italic text-glow-title block text-[2.55rem] leading-[1.02] md:text-[3.05rem]">
+                Broadcast,
               </span>
-              <span className="font-display-italic text-glow-title mt-1 block text-4xl md:text-5xl">
-                streaming &amp; digital
+              <span className="font-display-italic mt-1 block text-[2.2rem] leading-[1.06] text-foreground/76 md:text-[2.65rem]">
+                streaming{" "}
+                <span className="text-accent/80">&amp;</span> digital
               </span>
             </h2>
           </div>
-          <p className="text-label max-w-sm text-foreground/42">
-            {profile.workIntro}
-          </p>
         </div>
 
         <div className="filter-bar mb-6">

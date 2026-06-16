@@ -24,7 +24,7 @@ clip() {
 }
 
 clip "my-wife-my-abuser" "https://www.youtube.com/watch?v=3a9YIyQQBPY" 8
-clip "willem-frieda" "https://www.youtube.com/watch?v=IfxHSX2Az18" 0
+clip "willem-frieda" "https://www.youtube.com/watch?v=vsd3HgsCs1M" 6
 clip "who-killed-billie-jo" "https://vimeo.com/678141708" 0
 clip "babes-in-the-woods" "https://www.youtube.com/watch?v=gKPLOZdgPfE" 15
 clip "human-tide" "https://www.youtube.com/watch?v=zV4xTVH90-8" 5

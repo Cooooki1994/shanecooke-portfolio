@@ -25,6 +25,8 @@ export function About() {
           <div className="space-y-6 text-base leading-relaxed text-foreground/70">
             <p>{profile.bio}</p>
             <p>{profile.extendedBio}</p>
+            <p>{profile.credits}</p>
+            <p>{profile.toolsBio}</p>
             <p className="font-serif text-foreground/58">{profile.approach}</p>
 
             <div className="grid grid-cols-2 gap-6 border-t border-accent/12 pt-8">

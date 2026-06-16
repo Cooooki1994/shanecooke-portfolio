@@ -24,13 +24,12 @@ export const historyHitTrailers = {
   },
   "churchills-secret-war": {
     videoSrc: "/videos/hh-originals/churchills-secret-war.mp4",
-    title: "Churchill's Secret Army",
+    title: "Churchill's Secret War",
     instagram: "https://www.instagram.com/reel/DW_uRr3FnnQ/",
     youtubeId: "I-mb3pu2BUY",
     youtubeUrl: "https://www.youtube.com/watch?v=I-mb3pu2BUY",
     svod: "https://access.historyhit.com/videos/churchills-secret-army",
     source: "@historyhit Instagram",
-    note: "Published as Churchill's Secret Army on History Hit",
   },
   "rise-of-caesar": {
     videoSrc: "/videos/hh-originals/rise-of-augustus.mp4",

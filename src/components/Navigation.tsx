@@ -40,24 +40,36 @@ export function Navigation({ solid = false }: NavigationProps) {
           <BrandName size="nav" />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-label border-b border-transparent pb-0.5 text-foreground/55 transition-all hover:border-accent/35 hover:text-accent-soft"
+        <div className="flex items-center gap-3 sm:gap-6 md:gap-8">
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-label border-b border-transparent pb-0.5 text-foreground/55 transition-all hover:border-accent/35 hover:text-accent-soft"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline bg-background/55 px-3 py-1.5 backdrop-blur-sm sm:px-4 sm:py-2"
             >
-              {link.label}
-            </Link>
-          ))}
-          <a
-            href={profile.imdb}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-label border-b border-transparent pb-0.5 text-foreground/55 transition-all hover:border-accent/35 hover:text-accent-soft"
-          >
-            IMDb
-          </a>
+              LinkedIn
+            </a>
+            <a
+              href={profile.imdb}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline bg-background/55 px-3 py-1.5 backdrop-blur-sm sm:px-4 sm:py-2"
+            >
+              IMDb
+            </a>
+          </div>
         </div>
       </nav>
     </header>

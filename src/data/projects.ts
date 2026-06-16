@@ -23,6 +23,8 @@ export type Project = {
   award?: string;
   youtubeChannel?: boolean;
   wip?: boolean;
+  /** Top-left thumbnail label when no broadcaster logo (e.g. Indie Feature). */
+  cardBadge?: string;
   description: string;
 };
 
@@ -52,9 +54,12 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/shane-cooke-657852212",
   imdb: "https://www.imdb.com/name/nm10567555/",
   portfolio: "https://www.shanecookedits.com/",
-  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, YouTube, podcast and creator long-form, digital and film.`,
-  extendedBio: `His work is strongest where there is a real story to shape: interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. He goes beyond assembling shots, finding the emotion in the material and building a moving narrative through structure, pacing and rhythm. He edited My Wife, My Abuser, nominated for a British Film Editors award, and continues across documentary, history, science, investigations, branded films and digital-first factual.`,
-  approach: `Shane works across Premiere Pro, DaVinci Resolve, After Effects and Blender, with experience in editing, colour grading, motion graphics, sound design, title design, archive-led sequences and 2D/3D visual storytelling. He uses modern tools and AI-assisted workflows where they improve the process, while keeping story, tone and editorial judgement human-led.`,
+  siteBrand: "Shane Cooke Edits",
+  bio: `Shane Cooke is a London-based freelance documentary and factual editor working across broadcast, digital, branded and long-form projects.`,
+  extendedBio: `His work is strongest where there is a real story to shape: interviews, archive, scripts, voiceover and raw material that needs turning into a clear, engaging film. His approach goes beyond assembling shots, focusing on structure, pacing, emotional rhythm and the visual logic of each piece.`,
+  credits: `His credits include My Wife, My Abuser, which was nominated for Best Edited Current Affairs at the British Film Editors Cut Above Awards. He continues to work across documentary, history, science, investigations, branded films and digital-first factual content.`,
+  toolsBio: `Shane works across Premiere Pro, DaVinci Resolve, After Effects and Blender, combining editing, colour grading, motion graphics, sound design, title design, archive-led sequences and 2D/3D visual storytelling.`,
+  approach: `He uses modern tools and AI-assisted workflows where they improve the process, while keeping story, tone and editorial judgement human-led.`,
   skills: [
     "Documentary & factual editing",
     "YouTube long-form",
@@ -104,8 +109,9 @@ export const projects: Project[] = [
     role: "Editor",
     category: "documentary",
     poster: "/images/willem-frieda-poster.jpg",
-    youtubeId: "IfxHSX2Az18",
-    externalUrl: "https://www.youtube.com/watch?v=IfxHSX2Az18",
+    youtubeId: "vsd3HgsCs1M",
+    videoSrc: "/videos/hero/willem-frieda.mp4",
+    externalUrl: "https://www.youtube.com/watch?v=vsd3HgsCs1M",
     featured: true,
     description:
       "Lead editor weaving archival footage and testimony into an intimate resistance story for Channel 4.",
@@ -146,6 +152,7 @@ export const projects: Project[] = [
     role: "Assistant Editor",
     category: "true-crime",
     poster: "/images/babes-in-the-woods-poster.jpg",
+    youtubeId: "gKPLOZdgPfE",
     videoSrc: "/videos/babes-in-the-woods.mp4",
     externalUrl: "https://www.youtube.com/watch?v=gKPLOZdgPfE",
     description:
@@ -154,7 +161,8 @@ export const projects: Project[] = [
   {
     slug: "human-tide",
     title: "Human Tide",
-    client: "Feature Documentary",
+    client: "Indie Feature",
+    cardBadge: "Indie Feature",
     year: "2025",
     role: "Editor",
     category: "documentary",
@@ -174,6 +182,7 @@ export const projects: Project[] = [
     role: "Editor",
     category: "history",
     poster: "/images/history-hit/icelandic-vikings-arrival.jpg",
+    youtubeId: "Ex4TYHbTP1g",
     videoSrc: "/videos/hh-originals/icelandic-vikings-arrival.mp4",
     externalUrl: "https://access.historyhit.com/videos/icelandic-vikings-arrival",
     featured: true,
@@ -188,6 +197,7 @@ export const projects: Project[] = [
     role: "Editor",
     category: "history",
     poster: "/images/history-hit/icelandic-vikings-survival.jpg",
+    youtubeId: "bS4QRBBTgWQ",
     videoSrc: "/videos/hh-originals/icelandic-vikings-survival.mp4",
     externalUrl:
       "https://access.historyhit.com/icelandic-vikings/season:1/videos/icelandic-vikings-survival",
@@ -202,11 +212,12 @@ export const projects: Project[] = [
     role: "Editor",
     category: "history",
     poster: "/images/history-hit/churchills-secret-war.jpg",
+    youtubeId: "I-mb3pu2BUY",
     videoSrc: "/videos/hh-originals/churchills-secret-war.mp4",
     externalUrl: "https://access.historyhit.com/videos/churchills-secret-army",
     featured: true,
     description:
-      "Lead editor on an archive-heavy WWII feature for History Hit, covert operations and strategic through-line.",
+      "Lead editor on Churchill's Secret War, an archive-heavy WWII feature for History Hit — covert operations and strategic through-line.",
   },
   {
     slug: "rise-of-caesar",
@@ -216,6 +227,7 @@ export const projects: Project[] = [
     role: "Editor",
     category: "history",
     poster: "/images/history-hit/rise-of-caesar.jpg",
+    youtubeId: "mD_YVIglLUM",
     videoSrc: "/videos/hh-originals/rise-of-augustus.mp4",
     externalUrl: "https://access.historyhit.com/videos/rise-of-caesar",
     description:
@@ -235,26 +247,10 @@ export const projects: Project[] = [
       "Lead editor on the Rise Of companion, epic Roman history with intimate political detail.",
   },
   {
-    slug: "the-legend-of-arthur",
-    title: "The Legend of Arthur",
-    client: "History Hit",
-    year: "2026",
-    role: "Editor",
-    category: "history",
-    poster: "/images/history-hit/king-arthur-title-card.jpg",
-    bannerSrc: "/images/history-hit/king-arthur-title-card.jpg",
-    logoSrc: "/images/history-hit-channel-logo.png",
-    externalUrl: "https://access.historyhit.com",
-    featured: true,
-    wip: true,
-    award: "WIP · Coming soon on History Hit",
-    description:
-      "Lead editor on a History Hit Original TV documentary, manuscript-led Arthurian history, currently in post.",
-  },
-  {
     slug: "dandelion",
     title: "Dandelion",
-    client: "Short Film",
+    client: "Indie Short",
+    cardBadge: "Indie Short",
     year: "2023",
     role: "Editor",
     category: "short",

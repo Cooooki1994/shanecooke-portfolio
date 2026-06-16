@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { ProjectDetailView } from "@/components/ProjectDetailView";
 import { getProjectDetail } from "@/data/project-details";
 import { projects } from "@/data/projects";
+import { siteBrand } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -20,12 +22,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const detail = getProjectDetail(slug);
 
   return {
-    title: `${project.title}, Shane Cooke BFE`,
+    title: `${project.title} — ${siteBrand}`,
     description: detail?.synopsis ?? project.description,
+    alternates: {
+      canonical: `/work/${slug}`,
+    },
     openGraph: {
-      title: project.title,
+      title: `${project.title} | Shane Cooke Edits`,
       description: detail?.synopsis ?? project.description,
       images: [project.poster],
+      type: "article",
     },
   };
 }
@@ -42,5 +48,16 @@ export default async function WorkPage({ params }: PageProps) {
       : [],
   };
 
-  return <ProjectDetailView project={project} detail={detail} />;
+  return (
+    <>
+      <JsonLd
+        page={{
+          name: `${project.title} | ${siteBrand}`,
+          description: detail.synopsis,
+          path: `/work/${slug}`,
+        }}
+      />
+      <ProjectDetailView project={project} detail={detail} />
+    </>
+  );
 }

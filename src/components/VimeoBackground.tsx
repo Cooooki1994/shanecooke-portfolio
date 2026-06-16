@@ -9,6 +9,8 @@ type VimeoBackgroundProps = {
   muted?: boolean;
   background?: boolean;
   chromeless?: boolean;
+  /** Full trailer player with controls and audio (detail pages). */
+  interactive?: boolean;
 };
 
 export function VimeoBackground({
@@ -18,12 +20,13 @@ export function VimeoBackground({
   muted = true,
   background = true,
   chromeless = false,
+  interactive = false,
 }: VimeoBackgroundProps) {
-  const base =
-    "autoplay=1&loop=1&controls=0&title=0&byline=0&portrait=0&badge=0&pip=0&playsinline=1&dnt=1&transparent=0";
-  const src = background
-    ? `https://player.vimeo.com/video/${vimeoId}?background=1&muted=1&${base}`
-    : `https://player.vimeo.com/video/${vimeoId}?muted=${muted ? 1 : 0}&${base}`;
+  const src = interactive
+    ? `https://player.vimeo.com/video/${vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&playsinline=1&dnt=1`
+    : background
+      ? `https://player.vimeo.com/video/${vimeoId}?background=1&muted=1&autoplay=1&loop=1&controls=0&title=0&byline=0&portrait=0&badge=0&pip=0&playsinline=1&dnt=1&transparent=0`
+      : `https://player.vimeo.com/video/${vimeoId}?muted=${muted ? 1 : 0}&autoplay=1&loop=1&controls=0&title=0&byline=0&portrait=0&badge=0&pip=0&playsinline=1&dnt=1&transparent=0`;
 
   const frameClass = chromeless
     ? "absolute left-1/2 top-[52%] h-[170%] w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 border-0"
@@ -31,7 +34,7 @@ export function VimeoBackground({
 
   return (
     <div
-      className={`pointer-events-none absolute inset-0 overflow-hidden bg-background ${className}`}
+      className={`${interactive ? "relative" : "pointer-events-none"} absolute inset-0 overflow-hidden bg-background ${className}`}
       style={{ opacity }}
     >
       <iframe
