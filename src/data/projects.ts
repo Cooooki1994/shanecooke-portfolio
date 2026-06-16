@@ -295,6 +295,7 @@ export const projects: Project[] = [
     category: "history",
     poster:
       "https://images.squarespace-cdn.com/content/v1/61119a51fee1111102a9dd9a/1678553328893-KXBB5FPHMYJXXLI37OMM/HH+PNG.png",
+    youtubeId: "Ex4TYHbTP1g",
     externalUrl: "https://www.youtube.com/@HistoryHit",
     youtubeChannel: true,
     featured: true,
