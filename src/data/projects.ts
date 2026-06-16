@@ -293,9 +293,9 @@ export const projects: Project[] = [
     year: "2023 to 2026",
     role: "Editor",
     category: "history",
-    poster:
-      "https://images.squarespace-cdn.com/content/v1/61119a51fee1111102a9dd9a/1678553328893-KXBB5FPHMYJXXLI37OMM/HH+PNG.png",
-    youtubeId: "Ex4TYHbTP1g",
+    poster: "/images/history-hit-youtube-thumb.jpg",
+    bannerSrc: "/images/history-hit-youtube-thumb.jpg",
+    youtubeId: "ZLi9mEZBjA4",
     externalUrl: "https://www.youtube.com/@HistoryHit",
     youtubeChannel: true,
     featured: true,
