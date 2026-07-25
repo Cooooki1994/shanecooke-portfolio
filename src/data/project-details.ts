@@ -19,6 +19,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Lead editor across long-form assembly and multiple timelines. Solo editor nomination, Best Edited Current Affairs, BFE Cut Above Awards 2025.",
     imdbUrl: "https://www.imdb.com/title/tt28166722/",
     watch: [
+      { label: "Full documentary", url: "https://www.youtube.com/watch?v=hCHe0aAdzYI" },
       { label: "Netflix", url: "https://www.netflix.com/title/81771748" },
       { label: "Channel 5", url: "https://www.channel5.com/" },
       { label: "Trailer", url: "https://www.youtube.com/watch?v=3a9YIyQQBPY" },

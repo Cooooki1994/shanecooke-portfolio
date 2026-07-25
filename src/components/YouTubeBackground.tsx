@@ -25,8 +25,8 @@ export function YouTubeBackground({
 
   useEffect(() => {
     const params = new URLSearchParams({
-      autoplay: interactive ? "0" : "1",
-      mute: interactive ? "0" : muted ? "1" : "0",
+      autoplay: "1",
+      mute: interactive ? "1" : muted ? "1" : "0",
       loop: interactive ? "0" : "1",
       controls: interactive ? "1" : "0",
       playsinline: "1",
@@ -65,10 +65,11 @@ export function YouTubeBackground({
         <iframe
           src={src}
           className={frameClass}
-          allow="autoplay; encrypted-media; picture-in-picture"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
           title=""
           loading="eager"
-          tabIndex={-1}
+          tabIndex={interactive ? 0 : -1}
         />
       )}
       {chromeless && (

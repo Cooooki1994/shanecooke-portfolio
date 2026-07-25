@@ -94,8 +94,8 @@ export const projects: Project[] = [
     category: "documentary",
     poster:
       "https://images.squarespace-cdn.com/content/v1/61119a51fee1111102a9dd9a/3822559f-f721-4bfa-93e4-e4352347aa14/Screenshot+2025-09-01+at+13-27-40+My+Wife+My+Abuser+The+Secret+Footage+%282024%29.png",
-    youtubeId: "3a9YIyQQBPY",
-    externalUrl: "https://www.youtube.com/watch?v=3a9YIyQQBPY",
+    youtubeId: "hCHe0aAdzYI",
+    externalUrl: "https://www.youtube.com/watch?v=hCHe0aAdzYI",
     featured: true,
     award: "BFE Nominee · Best Edited Current Affairs · Solo editor",
     description:
