@@ -13,6 +13,43 @@ type YouTubeBackgroundProps = {
   chromeless?: boolean;
 };
 
+function buildEmbedSrc(
+  youtubeId: string,
+  {
+    interactive,
+    muted,
+    chromeless,
+    origin,
+  }: { interactive: boolean; muted: boolean; chromeless: boolean; origin?: string },
+): string {
+  const params = new URLSearchParams({
+    autoplay: "1",
+    mute: interactive ? "1" : muted ? "1" : "0",
+    loop: interactive ? "0" : "1",
+    controls: interactive ? "1" : "0",
+    playsinline: "1",
+    rel: "0",
+    modestbranding: "1",
+    iv_load_policy: "3",
+    cc_load_policy: "0",
+    disablekb: interactive ? "0" : "1",
+    fs: interactive ? "1" : "0",
+    autohide: interactive ? "0" : "1",
+    showinfo: "0",
+  });
+
+  if (!interactive) {
+    params.set("playlist", youtubeId);
+  }
+
+  if (chromeless && origin) {
+    params.set("origin", origin);
+    params.set("widget_referrer", origin);
+  }
+
+  return `https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`;
+}
+
 export function YouTubeBackground({
   youtubeId,
   className = "",
@@ -21,36 +58,16 @@ export function YouTubeBackground({
   interactive = false,
   chromeless = false,
 }: YouTubeBackgroundProps) {
-  const [src, setSrc] = useState<string | null>(null);
-
+  // Compute src synchronously so the iframe renders on first paint.
+  // Origin is only needed for chromeless hero embeds; grab it after mount.
+  const [origin, setOrigin] = useState<string | undefined>(undefined);
   useEffect(() => {
-    const params = new URLSearchParams({
-      autoplay: "1",
-      mute: interactive ? "1" : muted ? "1" : "0",
-      loop: interactive ? "0" : "1",
-      controls: interactive ? "1" : "0",
-      playsinline: "1",
-      rel: "0",
-      modestbranding: "1",
-      iv_load_policy: "3",
-      cc_load_policy: "0",
-      disablekb: interactive ? "0" : "1",
-      fs: interactive ? "1" : "0",
-      autohide: interactive ? "0" : "1",
-      showinfo: "0",
-    });
-
-    if (!interactive) {
-      params.set("playlist", youtubeId);
+    if (chromeless && typeof window !== "undefined") {
+      setOrigin(window.location.origin);
     }
+  }, [chromeless]);
 
-    if (chromeless) {
-      params.set("origin", window.location.origin);
-      params.set("widget_referrer", window.location.origin);
-    }
-
-    setSrc(`https://www.youtube-nocookie.com/embed/${youtubeId}?${params}`);
-  }, [youtubeId, muted, chromeless, interactive]);
+  const src = buildEmbedSrc(youtubeId, { interactive, muted, chromeless, origin });
 
   const frameClass = chromeless
     ? "absolute left-1/2 top-[52%] h-[170%] w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 border-0"
@@ -58,20 +75,20 @@ export function YouTubeBackground({
 
   return (
     <div
-      className={`${interactive ? "relative" : "pointer-events-none"} absolute inset-0 overflow-hidden bg-background ${className}`}
+      className={`absolute inset-0 overflow-hidden bg-background ${
+        interactive ? "" : "pointer-events-none"
+      } ${className}`}
       style={{ opacity }}
     >
-      {src && (
-        <iframe
-          src={src}
-          className={frameClass}
-          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-          allowFullScreen
-          title=""
-          loading="eager"
-          tabIndex={interactive ? 0 : -1}
-        />
-      )}
+      <iframe
+        src={src}
+        className={frameClass}
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+        allowFullScreen
+        title=""
+        loading="eager"
+        tabIndex={interactive ? 0 : -1}
+      />
       {chromeless && (
         <>
           <div className="absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-background via-background/90 to-transparent" />
