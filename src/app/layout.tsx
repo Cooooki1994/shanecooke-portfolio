@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { CursorSpotlight } from "@/components/CursorSpotlight";
 import {
   siteBrand,
@@ -79,6 +81,8 @@ export default function RootLayout({
       <body className="relative min-h-full">
         <CursorSpotlight />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
