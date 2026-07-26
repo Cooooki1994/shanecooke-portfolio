@@ -148,10 +148,10 @@ export function ProjectDetailView({ project, detail }: ProjectDetailViewProps) {
                 )}
               </dl>
 
-              {/* Trailer */}
+              {/* Trailer / full video */}
               <section className="mt-10">
                 <h2 className="text-eyebrow mb-4">
-                  Trailer
+                  {detail.videoLabel ?? "Trailer"}
                 </h2>
                 <ProjectTrailer project={project} />
               </section>

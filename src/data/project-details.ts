@@ -9,6 +9,8 @@ export type ProjectDetail = {
   imdbUrl?: string;
   watch: WatchLink[];
   credits?: { label: string; value: string }[];
+  /** Section heading above the embedded video. Defaults to "Trailer". */
+  videoLabel?: string;
 };
 
 export const projectDetails: Record<string, ProjectDetail> = {
@@ -18,6 +20,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     editorial:
       "Lead editor across long-form assembly and multiple timelines. Solo editor nomination, Best Edited Current Affairs, BFE Cut Above Awards 2025.",
     imdbUrl: "https://www.imdb.com/title/tt28166722/",
+    videoLabel: "Full film",
     watch: [
       { label: "Full documentary", url: "https://www.youtube.com/watch?v=hCHe0aAdzYI" },
       { label: "Netflix", url: "https://www.netflix.com/title/81771748" },
