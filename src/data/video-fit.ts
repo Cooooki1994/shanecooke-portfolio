@@ -5,8 +5,11 @@ export const portraitVideoSlugs = new Set([
   "churchills-secret-war",
 ]);
 
-/** Posters that must show in full (letterbox) — e.g. title on image edges. */
-export const containPosterSlugs = new Set<string>(["infrastructure-wars"]);
+/** Posters that must show in full (letterbox) — e.g. title on image edges, or portrait art in a 16:9 card. */
+export const containPosterSlugs = new Set<string>([
+  "infrastructure-wars",
+  "human-tide",
+]);
 
 export function getPosterFitClass(slug: string): string {
   if (containPosterSlugs.has(slug)) return "object-contain object-center";
