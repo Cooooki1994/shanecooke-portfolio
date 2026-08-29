@@ -202,10 +202,17 @@ export const projectDetails: Record<string, ProjectDetail> = {
   },
   "astrum-earth": {
     synopsis:
-      "Earth science documentaries for Astrum Earth, climate, oceans, chemistry, and environmental storytelling for a growing YouTube audience.",
+      "Earth science documentaries for Astrum Earth, climate, oceans, chemistry, and environmental storytelling for a growing YouTube audience. Includes Why Nobody Talks About the Ozone Hole Anymore.",
     editorial:
       "Lead editor on science-led explainers. Clear narrative structure, motion graphics integration, and pacing suited to digital long-form delivery.",
-    watch: [{ label: "YouTube", url: "https://www.youtube.com/@AstrumEarth" }],
+    videoLabel: "Ozone",
+    watch: [
+      {
+        label: "Ozone",
+        url: "https://www.youtube.com/watch?v=EmaQVbdd6Ko",
+      },
+      { label: "YouTube", url: "https://www.youtube.com/@AstrumEarth" },
+    ],
     credits: [{ label: "Channel", value: "Astrum Earth" }],
   },
   "infrastructure-wars": {

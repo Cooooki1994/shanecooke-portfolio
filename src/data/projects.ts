@@ -312,6 +312,7 @@ export const projects: Project[] = [
     poster: "/images/astrum-earth-banner.jpg",
     bannerSrc: "/images/astrum-earth-banner.jpg",
     logoSrc: "/images/astrum-earth-logo.png",
+    youtubeId: "EmaQVbdd6Ko",
     externalUrl: "https://www.youtube.com/@AstrumEarth",
     youtubeChannel: true,
     featured: true,
