@@ -3,21 +3,22 @@
 import { useMemo, useState } from "react";
 import {
   projects,
-  youtubeChannelSlugs,
+  youtubeSectionSlugs,
   type Project,
 } from "@/data/projects";
 import { ProjectCard } from "./ProjectCard";
 
-type WorkFilter = "all" | "true-crime" | "history" | "features";
+type WorkFilter = "all" | "true-crime" | "history" | "digital" | "features";
 
 const filters: { label: string; value: WorkFilter }[] = [
   { label: "All", value: "all" },
   { label: "True Crime", value: "true-crime" },
   { label: "History", value: "history" },
+  { label: "Digital", value: "digital" },
   { label: "Features", value: "features" },
 ];
 
-const youtubeSlugSet = new Set<string>(youtubeChannelSlugs);
+const youtubeSlugSet = new Set<string>(youtubeSectionSlugs);
 
 const featureSlugs = new Set(["human-tide", "to-olivia", "dandelion"]);
 
@@ -26,7 +27,7 @@ const gridClass =
 
 function partitionProjects(list: Project[]) {
   const main = list.filter((p) => !youtubeSlugSet.has(p.slug));
-  const youtube = youtubeChannelSlugs
+  const youtube = youtubeSectionSlugs
     .map((slug) => list.find((p) => p.slug === slug))
     .filter((p): p is Project => Boolean(p));
   return { main, youtube };
@@ -36,6 +37,7 @@ function matchesFilter(project: Project, filter: WorkFilter): boolean {
   if (filter === "all") return true;
   if (filter === "true-crime") return project.category === "true-crime";
   if (filter === "history") return project.category === "history";
+  if (filter === "digital") return project.category === "digital";
   if (filter === "features") {
     return (
       project.category === "film" ||
@@ -61,7 +63,7 @@ export function ProjectGrid() {
 
   const showYoutube =
     youtube.length > 0 &&
-    (filter === "all" || filter === "history" || filter === "features");
+    (filter === "all" || filter === "history" || filter === "digital" || filter === "features");
 
   return (
     <section id="work" className="relative bg-background py-10 md:py-14">
@@ -106,7 +108,7 @@ export function ProjectGrid() {
         {showYoutube && (
           <div className={main.length > 0 ? "mt-8" : ""}>
             <div className="mb-4 flex items-center gap-3 border-t border-accent/10 pt-5">
-              <p className="text-eyebrow shrink-0">YouTube</p>
+              <p className="text-eyebrow shrink-0">YouTube &amp; digital</p>
               <span className="h-px flex-1 bg-accent/10" />
             </div>
             <div className={gridClass}>

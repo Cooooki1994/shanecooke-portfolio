@@ -7,6 +7,8 @@ export type ProjectDetail = {
   synopsis: string;
   editorial?: string;
   imdbUrl?: string;
+  hideMedia?: boolean;
+  linksLabel?: string;
   watch: WatchLink[];
   credits?: { label: string; value: string }[];
   /** Section heading above the embedded video. Defaults to "Trailer". */
@@ -14,6 +16,49 @@ export type ProjectDetail = {
 };
 
 export const projectDetails: Record<string, ProjectDetail> = {
+  "guardian-studios": {
+    synopsis:
+      "Editorial work on a pilot for Guardian Studios. The assignment brought together conversation, archive and graphic-led material in a clear, watchable first cut.",
+    editorial:
+      "Shane worked as an editor on the pilot, shaping structure, pacing and visual flow. Project details and footage are not shared here.",
+    hideMedia: true,
+    watch: [],
+    credits: [
+      { label: "Client", value: "Guardian Studios" },
+      { label: "Format", value: "Pilot" },
+    ],
+  },
+  "hearst-canvas": {
+    synopsis:
+      "Digital-first adventure storytelling for Hearst Canvas, bringing together editorial structure and a visual language built for online audiences.",
+    editorial:
+      "Shane's work spans conversation-led edits, archive sequences, route maps, titles and motion graphics. Frontier Collective's Expedition HQ is one example of that work.",
+    hideMedia: true,
+    linksLabel: "Explore",
+    watch: [
+      { label: "Frontier Collective case study", url: "/work/frontier-collective" },
+      { label: "About Hearst Canvas", url: "https://www.hearstnetworks.com/brands/hearst-canvas" },
+    ],
+    credits: [
+      { label: "Client", value: "Hearst Canvas" },
+      { label: "Focus", value: "Digital editorial · motion graphics" },
+    ],
+  },
+  "frontier-collective": {
+    synopsis:
+      "Expedition HQ is Frontier Collective's conversation-led adventure series, bringing together explorers and guests to talk about the decisions, risks and people behind extraordinary journeys.",
+    editorial:
+      "Shane's editorial and graphics work for the series includes shaping conversations, integrating expedition archive and building maps, titles and transitions in the project's established visual style.",
+    videoLabel: "Expedition HQ episode",
+    watch: [
+      { label: "Watch the Bruce Parry episode", url: "https://www.youtube.com/watch?v=jxgXHNdD30E&t=83s" },
+    ],
+    credits: [
+      { label: "Series", value: "Expedition HQ" },
+      { label: "Brand", value: "Frontier Collective" },
+      { label: "Client", value: "Hearst Canvas" },
+    ],
+  },
   "my-wife-my-abuser": {
     synopsis:
       "A sensitive current affairs documentary examining coercive control through secretly recorded footage. The film balances legal complexity, survivor testimony, and broadcast clarity for a primetime Channel 5 audience, later reaching international audiences on Netflix.",

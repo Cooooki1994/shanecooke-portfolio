@@ -17,6 +17,8 @@ function formatLabel(project: Project): string | null {
       return "Feature Film";
     case "short":
       return "Short Film";
+    case "digital":
+      return "Digital";
     default:
       return null;
   }
@@ -149,12 +151,12 @@ export function ProjectDetailView({ project, detail }: ProjectDetailViewProps) {
               </dl>
 
               {/* Trailer / full video */}
-              <section className="mt-10">
+              {!detail.hideMedia && <section className="mt-10">
                 <h2 className="text-eyebrow mb-4">
                   {detail.videoLabel ?? "Trailer"}
                 </h2>
                 <ProjectTrailer project={project} />
-              </section>
+              </section>}
 
               {/* Synopsis */}
               <section className="mt-12">
@@ -175,7 +177,7 @@ export function ProjectDetailView({ project, detail }: ProjectDetailViewProps) {
               {detail.watch.length > 0 && (
                 <section className="mt-12">
                   <h2 className="text-eyebrow mb-4">
-                    Where to watch
+                    {detail.linksLabel ?? "Where to watch"}
                   </h2>
                   <div className="flex flex-wrap gap-3">
                     {detail.watch.map((link) =>

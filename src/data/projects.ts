@@ -1,5 +1,6 @@
 export type ProjectCategory =
   | "documentary"
+  | "digital"
   | "true-crime"
   | "history"
   | "film"
@@ -28,7 +29,10 @@ export type Project = {
   description: string;
 };
 
-export const youtubeChannelSlugs = [
+export const youtubeSectionSlugs = [
+  "guardian-studios",
+  "hearst-canvas",
+  "frontier-collective",
   "history-hit-youtube",
   "astrum-earth",
   "infrastructure-wars",
@@ -85,6 +89,44 @@ export const profile = {
 } as const;
 
 export const projects: Project[] = [
+  {
+    slug: "guardian-studios",
+    title: "Guardian Studios",
+    client: "Guardian Studios",
+    cardBadge: "Editorial pilot",
+    year: "2026",
+    role: "Editor",
+    category: "digital",
+    poster: "/images/projects/guardian-studios-logo.jpg",
+    description:
+      "Editorial work on a Guardian Studios pilot, shaping a clear first cut from conversation, archive and supplied visual material.",
+  },
+  {
+    slug: "hearst-canvas",
+    title: "Hearst Canvas",
+    client: "Hearst Canvas",
+    cardBadge: "Digital original",
+    year: "2026",
+    role: "Editor & motion graphics",
+    category: "digital",
+    poster: "/images/projects/hearst-canvas-logo.jpg",
+    description:
+      "Editing and visual storytelling for Hearst Canvas's digital-first adventure slate, from story-led sequences to maps and motion graphics.",
+  },
+  {
+    slug: "frontier-collective",
+    title: "Frontier Collective",
+    client: "Frontier Collective · Hearst Canvas",
+    cardBadge: "Expedition HQ",
+    year: "2026",
+    role: "Editor & motion graphics",
+    category: "digital",
+    poster: "/images/projects/frontier-collective-logo.jpg",
+    youtubeId: "jxgXHNdD30E",
+    externalUrl: "https://www.youtube.com/watch?v=jxgXHNdD30E&t=83s",
+    description:
+      "Adventure storytelling for Expedition HQ, combining conversation-led editing, expedition archive, maps and a distinctive graphic language.",
+  },
   {
     slug: "my-wife-my-abuser",
     title: "My Wife, My Abuser",
