@@ -30,7 +30,6 @@ export type Project = {
 };
 
 export const youtubeSectionSlugs = [
-  "guardian-studios",
   "hearst-canvas",
   "frontier-collective",
   "history-hit-youtube",
@@ -89,18 +88,6 @@ export const profile = {
 } as const;
 
 export const projects: Project[] = [
-  {
-    slug: "guardian-studios",
-    title: "Guardian Studios",
-    client: "Guardian Studios",
-    year: "2026",
-    role: "Editor",
-    category: "digital",
-    poster: "/images/projects/guardian-studios-card.jpg",
-    logoSrc: "/images/logos/guardian-studios-mini.png",
-    description:
-      "Editorial work on a Guardian Studios pilot, shaping a clear first cut from conversation, archive and supplied visual material.",
-  },
   {
     slug: "hearst-canvas",
     title: "Hearst Canvas",

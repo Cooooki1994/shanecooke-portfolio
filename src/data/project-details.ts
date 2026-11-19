@@ -16,18 +16,6 @@ export type ProjectDetail = {
 };
 
 export const projectDetails: Record<string, ProjectDetail> = {
-  "guardian-studios": {
-    synopsis:
-      "Editorial work on a pilot for Guardian Studios. The assignment brought together conversation, archive and graphic-led material in a clear, watchable first cut.",
-    editorial:
-      "Shane worked as an editor on the pilot, shaping structure, pacing and visual flow. Project details and footage are not shared here.",
-    hideMedia: true,
-    watch: [],
-    credits: [
-      { label: "Client", value: "Guardian Studios" },
-      { label: "Format", value: "Pilot" },
-    ],
-  },
   "hearst-canvas": {
     synopsis:
       "Digital-first adventure storytelling for Hearst Canvas, bringing together editorial structure and a visual language built for online audiences.",
