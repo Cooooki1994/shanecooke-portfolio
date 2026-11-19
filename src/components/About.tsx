@@ -61,7 +61,10 @@ export function About() {
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a href={`mailto:${profile.email}`} className="btn-primary">
+              <a
+                href={`mailto:${profile.email}?subject=${encodeURIComponent("Editing enquiry via shanecookedits.com")}`}
+                className="btn-primary"
+              >
                 {profile.email}
               </a>
               <a

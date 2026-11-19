@@ -240,6 +240,21 @@ export function ProjectDetailView({ project, detail }: ProjectDetailViewProps) {
                   </dl>
                 </section>
               )}
+
+              <section className="mt-12 border-t border-accent/12 pt-10">
+                <h2 className="font-display-italic text-3xl text-foreground">
+                  Working on a story?
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/60">
+                  I’m available for documentary, factual and digital edits. Tell me about your project.
+                </p>
+                <a
+                  href={`mailto:${profile.email}?subject=${encodeURIComponent(`Editing enquiry via ${project.title} page`)}`}
+                  className="btn-primary mt-6 inline-flex"
+                >
+                  Get in touch
+                </a>
+              </section>
             </div>
           </div>
         </div>
