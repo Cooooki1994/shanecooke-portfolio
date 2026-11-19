@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const detail = getProjectDetail(slug);
 
   return {
-    title: `${project.title} — ${siteBrand}`,
+    title: `${project.title} — ${project.role}`,
     description: detail?.synopsis ?? project.description,
     alternates: {
       canonical: `/work/${slug}`,
